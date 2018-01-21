@@ -1,7 +1,7 @@
 require "discordrb"
 require "json"
-appDir=File.dirname(__FILE__)
-KEYS = JSON.parse(File.open("#{appDir}/keys.json").read)
+APPDIR=File.dirname(__FILE__)
+KEYS = JSON.parse(File.open("#{APPDIR}/keys.json").read)
 rando=Random.new()
 
 explodeMessages=['Darkness blacker than black and darker than dark,
@@ -41,7 +41,7 @@ $bot=Discordrb::Bot.new token: KEYS["discordBot"]
 $bot.message(with_text:'#!explode') do |event|
 	log("#!explode",event)
     event.respond explodeMessages[rand(3)]
-    $bot.send_file(event.channel.id,File.new("#{appDir}/EXPLOSION!.gif"))
+    $bot.send_file(event.channel.id,File.new("#{APPDIR}/EXPLOSION!.gif"))
 end
 $bot.message(with_text:'#!restart') do |event|
 	log("#!restart",event)
@@ -50,9 +50,11 @@ $bot.message(with_text:'#!restart') do |event|
 		IO.popen("kill #{Process.pid}")
 	elsif event.author.mention=="<@100102820589490176>"
 		event.respond "um ... don't you have your own bot that you can restart at will?"
+	elsif event.author.mention=="<@82981134597619712>"
+		event.respond "You could probably get Nora to do that with enough pats ... but you knew that already, didn't you."
 	else
 		event.respond "Yeah ... nah you arn't Nora!"
 	end
 end
-Dir["#{appDir}/plugins/*.rb"].each {|file| load file }#Fun new code to load all the ruby code in that one directory!
+Dir["#{APPDIR}/plugins/*.rb"].each {|file| load file }#Fun new code to load all the ruby code in that one directory!
 $bot.run

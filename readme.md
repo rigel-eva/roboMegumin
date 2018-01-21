@@ -6,7 +6,13 @@
 
 `#!ping`    - sends a Pong back!
 
+`#!RIP @user some catchy epitaph` - Megumin gets out her shovel, and starts buries your corpse
+ * optional: @user - Buries the target, instead of you, you plucky banker you~
+ * optional: some catchy epitaph - your own catchy epitaph! because who thinks having the same message is boring. Megumin does.
+
 `#!restart` - bot admin only, restarts the bot to load any new changes
+
+
 ## Setup:
 Run `gem install discordrb` to grab the discord gem. You are also going to want to set up a discord application, and a bot user at [The Discord developer site](https://discordapp.com/developers/applications/me) application. Once all that's done run `ruby core.rb` to get your new explosion ~~waifu~~ bot up and running
 
