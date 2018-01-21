@@ -1,5 +1,5 @@
 require "rmagick"
-FONT="./assets/here_lies_mecc.ttf"
+FONT="#{APPDIR}/assets/here_lies_mecc.ttf"
 TOMB_X={
     "name"=>194,
     "epitaph"=>112
@@ -17,7 +17,7 @@ TOMB_HEIGHT={
     "epitaph"=>57
 }
 def carveTombstone (name,epitaph)
-    tombstone=Magick::ImageList.new("./assets/Tombstone.png")
+    tombstone=Magick::ImageList.new("#{APPDIR}/assets/Tombstone.png")
     pen=Magick::Draw.new
     pen.font=FONT
     pen.pointsize = 16
@@ -59,9 +59,9 @@ $bot.message(:start_with=>"#!RIP") do |event|
     end
     puts epitaph
     if(!user.nick.nil?)
-        carveTombstone(user.nick,epitaph).write("boop.png")
+        carveTombstone(user.nick,epitaph).write("#{APPDIR}/boop.png")
     elsif
-        carveTombstone(user.username,epitaph).write("boop.png")
+        carveTombstone(user.username,epitaph).write("#{APPDIR}/boop.png")
     end
     $bot.send_file(event.channel.id,File.new("#{APPDIR}/boop.png"))
     File.delete("#{APPDIR}/boop.png")
