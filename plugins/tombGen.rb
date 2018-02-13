@@ -16,6 +16,21 @@ TOMB_HEIGHT={
     "name"=>16,
     "epitaph"=>57
 }
+EPITAPH_ROWS=4
+EPITAPH_COLUMNS=18
+def wordwrap(textToWrap,columns)
+    workingString=textToWrap
+    stringArray=Array.new();
+    returnString=""
+    while(workingString.length>0)
+        stringArray.push(workingString.slice!(0..columns-1))
+    end
+    (0..stringArray.length-2).each{|i|
+        returnString+="#{stringArray[i]}\n"
+    }
+    returnString+=stringArray[-1]
+    return returnString
+end
 def carveTombstone (name,epitaph)
     tombstone=Magick::ImageList.new("#{APPDIR}/assets/Tombstone.png")
     pen=Magick::Draw.new
@@ -27,15 +42,12 @@ def carveTombstone (name,epitaph)
     tombstone=tombstone
     tombstone.annotate(pen,TOMB_WIDTH["name"],TOMB_HEIGHT["name"],TOMB_X["name"],TOMB_Y["name"],name)
     pen.gravity=Magick::WestGravity#Switching gears for our epitaph
-    tombstone.annotate(pen,TOMB_WIDTH["epitaph"],TOMB_HEIGHT["epitaph"],TOMB_X["epitaph"],TOMB_Y["epitaph"],epitaph)
+    tombstone.annotate(pen,TOMB_WIDTH["epitaph"],TOMB_HEIGHT["epitaph"],TOMB_X["epitaph"],TOMB_Y["epitaph"],wordwrap(epitaph,EPITAPH_COLUMNS))
     tombstone.format="png"
     return tombstone
 end
-def getUser(username)
-    user=DiscordRB::User.new()
-end
-$bot.message(:start_with=>"#!RIP") do |event|
-    #event.respond "You\'re not dead ... not yet anyway 😝"
+def megumin_carveTombstone(event)
+#event.respond "You\'re not dead ... not yet anyway 😝"
     puts event.content
     user=event.author
     epitaph=""
@@ -65,4 +77,12 @@ $bot.message(:start_with=>"#!RIP") do |event|
     end
     $bot.send_file(event.channel.id,File.new("#{APPDIR}/boop.png"))
     File.delete("#{APPDIR}/boop.png")
+end
+if(!(MEGUMIN.nil?()))
+    $bot.message(:start_with=>"#!RIP") do |event|
+        megumin_carveTombstone(event)
+    end
+    $bot.message(:start_with=>"#!rip") do |event|
+        megumin_carveTombstone(event)
+    end
 end

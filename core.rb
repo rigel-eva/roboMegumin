@@ -1,7 +1,9 @@
+#!/usr/bin/env ruby
 require "discordrb"
 require "json"
 APPDIR=File.dirname(__FILE__)
 KEYS = JSON.parse(File.open("#{APPDIR}/keys.json").read)
+MEGUMIN=true;
 rando=Random.new()
 
 explodeMessages=['Darkness blacker than black and darker than dark,
@@ -41,7 +43,7 @@ $bot=Discordrb::Bot.new token: KEYS["discordBot"]
 $bot.message(with_text:'#!explode') do |event|
 	log("#!explode",event)
     event.respond explodeMessages[rand(3)]
-    $bot.send_file(event.channel.id,File.new("#{APPDIR}/EXPLOSION!.gif"))
+    $bot.send_file(event.channel.id,File.new("#{APPDIR}/assets/EXPLOSION!.gif"))
 end
 $bot.message(with_text:'#!restart') do |event|
 	log("#!restart",event)
