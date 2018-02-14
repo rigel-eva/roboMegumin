@@ -1,5 +1,9 @@
 require "rmagick"
-FONT="#{APPDIR}/assets/here_lies_mecc.ttf"
+if(defined? MEGUMIN)
+    FONT="#{APPDIR}/assets/here_lies_mecc.ttf"
+else
+    FONT="../assets/here_lies_mecc.ttf"
+end
 TOMB_X={
     "name"=>194,
     "epitaph"=>112
@@ -78,7 +82,7 @@ def megumin_carveTombstone(event)
     $bot.send_file(event.channel.id,File.new("#{APPDIR}/boop.png"))
     File.delete("#{APPDIR}/boop.png")
 end
-if(!(MEGUMIN.nil?()))
+if(defined? MEGUMIN)
     $bot.message(:start_with=>"#!RIP") do |event|
         megumin_carveTombstone(event)
     end
