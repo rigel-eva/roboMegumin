@@ -6,7 +6,7 @@
         {
             "label": "Start Discord Bot",
             "type": "shell",
-            "command": "ruby core.rb"
+            "command": "rake"
         }
     ]
 }
