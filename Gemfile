@@ -4,6 +4,6 @@ gem 'discordrb'
 gem 'json'
 gem 'god'
 gem 'rmagick'
-gem 'faye-websocket'
+gem 'buttplugrb'
 #gem 'usagewatch'#Only enable this if you are using the serverUsage plugin
 # gem "rails"

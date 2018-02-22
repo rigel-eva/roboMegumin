@@ -7,6 +7,11 @@
             "label": "Start Discord Bot",
             "type": "shell",
             "command": "rake"
+        },
+        {
+            "label": "Build Docker Image",
+            "type": "shell",
+            "command": "rake buildDockerImage"
         }
     ]
 }

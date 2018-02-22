@@ -1,7 +1,8 @@
 #pulling from ruby docker 2.5-strech (hehe strech ...)
 FROM ruby:2.5.0-stretch
 #Grabing the one thing we neeeeeeeed
-CMD ["apt update; apt install libsodium18"]
+RUN apt-get update
+RUN apt-get install -y libsodium18 libsodium-dev
 #Setting our working directory to something descriptive
 WORKDIR /EXPSLOSION
 # Copy the current directory contents into the container at /EXPSLOSION
