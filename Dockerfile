@@ -7,6 +7,8 @@ RUN apt-get install -y libsodium18 libsodium-dev
 WORKDIR /EXPSLOSION
 # Copy the current directory contents into the container at /EXPSLOSION
 ADD . /EXPSLOSION
+#Make sure we actualy have bundler ... 
+RUN gem install bundler
 #Install ALL THE PACKAGES~!
 RUN bundler install
 #set our name to something appropriage
