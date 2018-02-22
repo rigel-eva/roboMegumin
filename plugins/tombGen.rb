@@ -23,12 +23,13 @@ TOMB_HEIGHT={
 EPITAPH_ROWS=4
 EPITAPH_COLUMNS=18
 def wordwrap(textToWrap,columns)
-    workingString=textToWrap
-    stringArray=Array.new();
     returnString=""
-    while(workingString.length>0)
-        stringArray.push(workingString.slice!(0..columns-1))
-    end
+    stringArray=Array.new()
+    textToWrap.split("\n").each{|line|
+        while(line.length>0)
+            stringArray.push(line.slice!(0..columns-1))
+        end
+    }
     (0..stringArray.length-2).each{|i|
         returnString+="#{stringArray[i]}\n"
     }
@@ -51,7 +52,6 @@ def carveTombstone (name,epitaph)
     return tombstone
 end
 def megumin_carveTombstone(event)
-#event.respond "You\'re not dead ... not yet anyway 😝"
     puts event.content
     user=event.author
     epitaph=""
