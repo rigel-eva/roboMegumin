@@ -11,7 +11,9 @@ ADD . /EXPSLOSION
 RUN gem install bundler
 #Install ALL THE PACKAGES~!
 RUN bundler install
+RUN mkdir /var/log/roboMegumin
+RUN touch /var/log/roboMegumin/adventure.log
 #set our name to something appropriage
 ENV NAME roboMegumin
 #Oh! and run our core when we launch 
-CMD ["ruby","core.rb"]
+CMD [ "sh", "-c","god -c ./eris.god -D"]
