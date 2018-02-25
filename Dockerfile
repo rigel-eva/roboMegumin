@@ -10,7 +10,6 @@ ADD . /EXPSLOSION
 #Make sure we actualy have bundler ... 
 RUN gem install bundler
 #Install ALL THE PACKAGES~!
-RUN bundler install
 RUN mkdir /var/log/roboMegumin
 RUN touch /var/log/roboMegumin/adventure.log
 #set our name to something appropriage
