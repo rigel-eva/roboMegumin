@@ -58,5 +58,8 @@ $bot.message(with_text:'#!restart') do |event|
 		event.respond "Yeah ... nah you arn't Nora!"
 	end
 end
+$bot.message(with_text:'stop making bots') do |event|
+	event.respond "Stop Making Bots!\nThis Blog post said so! http://foxbot.me/post/stop-making-bots/"
+end
 Dir["#{APPDIR}/plugins/*.rb"].each {|file| load file }#Fun new code to load all the ruby code in that one directory!
 $bot.run
